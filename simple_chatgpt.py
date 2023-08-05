@@ -22,4 +22,6 @@ def loop():
         print(response["choices"][0]["message"]["content"].strip() + "\n") # type: ignore
 
     print(">> Starting chat...\n")
+
+if __name__ == '__main__':
     loop()
