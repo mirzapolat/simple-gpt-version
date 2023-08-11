@@ -11,7 +11,7 @@ def loop():
         response = openai.ChatCompletion.create(
             model=mod,
             messages=[
-                {"role": "system", "content": open("model_description.txt", "r").read().strip()},
+                {"role": "system", "content": open("model_description.txt", "r").read().strip() + " Der bisherige Chatverlauf ist: "},
                 {"role": "user", "content": f"{prompt}"},
             ],
             temperature=0.5,
@@ -19,7 +19,8 @@ def loop():
             frequency_penalty=1
         )
         print("\n<< ", end=" ")
-        print(response["choices"][0]["message"]["content"].strip() + "\n") # type: ignore
+        resp = response["choices"][0]["message"]["content"].strip()
+        print(resp + "\n") # type: ignore
 
     print(">> Starting chat...\n")
 
